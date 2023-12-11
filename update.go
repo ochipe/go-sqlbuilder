@@ -66,6 +66,13 @@ func (ub *UpdateBuilder) Update(table string) *UpdateBuilder {
 	return ub
 }
 
+// From  sets table name in UPDATE.Update alias From
+func (ub *UpdateBuilder) From(table string) *UpdateBuilder {
+	ub.table = Escape(table)
+	ub.marker = updateMarkerAfterUpdate
+	return ub
+}
+
 // Set sets the assignments in SET.
 func (ub *UpdateBuilder) Set(assignment ...string) *UpdateBuilder {
 	ub.assignments = assignment

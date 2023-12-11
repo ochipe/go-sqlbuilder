@@ -59,6 +59,13 @@ func (ib *InsertBuilder) InsertInto(table string) *InsertBuilder {
 	return ib
 }
 
+// From sets table name in INSERT. InsertInto alias From
+func (ib *InsertBuilder) From(table string) *InsertBuilder {
+	ib.table = Escape(table)
+	ib.marker = insertMarkerAfterInsertInto
+	return ib
+}
+
 // InsertIgnoreInto sets table name in INSERT IGNORE.
 func InsertIgnoreInto(table string) *InsertBuilder {
 	return DefaultFlavor.NewInsertBuilder().InsertIgnoreInto(table)

@@ -63,6 +63,13 @@ func (db *DeleteBuilder) DeleteFrom(table string) *DeleteBuilder {
 	return db
 }
 
+// From sets table name in DELETE. DeleteFrom alias From
+func (db *DeleteBuilder) From(table string) *DeleteBuilder {
+	db.table = Escape(table)
+	db.marker = deleteMarkerAfterDeleteFrom
+	return db
+}
+
 // Where sets expressions of WHERE in DELETE.
 func (db *DeleteBuilder) Where(andExpr ...string) *DeleteBuilder {
 	db.whereExprs = append(db.whereExprs, andExpr...)
